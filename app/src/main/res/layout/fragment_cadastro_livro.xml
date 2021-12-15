@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/id_fragment_cadastro_livro"
+    tools:context=".ui.cadastroLivro.CadastroLivroFragment">
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.cadastroLivro.CadastroLivroFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputCodLivroLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/cod_livro"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconTint="@color/black"
+        app:helperTextTextColor="@color/black"
+        app:endIconMode="clear_text"
+        app:helperText="Obrigatório*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_CodLivro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputNomeLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/nome_livro"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconTint="@color/black"
+        app:helperTextTextColor="@color/black"
+        app:endIconMode="clear_text"
+        app:helperText="Obrigatório*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputCodLivroLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_NomeLivro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputAutorLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/autor"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconTint="@color/black"
+        app:helperTextTextColor="@color/black"
+        app:endIconMode="clear_text"
+        app:helperText="Obrigatório*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputNomeLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_Autor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputEditoraLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/editora"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconTint="@color/black"
+        app:helperTextTextColor="@color/black"
+        app:endIconMode="clear_text"
+        app:helperText="Obrigatório*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputAutorLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_Editora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputAnoLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/ano"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:endIconTint="@color/black"
+            app:helperTextTextColor="@color/black"
+            app:endIconMode="clear_text"
+            app:helperText="Obrigatório*"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputEditoraLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_Ano"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputQuantidadeLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:hint="@string/quant"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:endIconTint="@color/black"
+            app:helperTextTextColor="@color/black"
+            app:endIconMode="clear_text"
+            app:helperText="Obrigatório*"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputAnoLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_Quantidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputGeneroLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/genero"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconTint="@color/black"
+        app:helperTextTextColor="@color/black"
+        app:endIconMode="clear_text"
+        app:helperText="Obrigatório*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputQuantidadeLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_Genero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputPrateleiraLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/prateleira"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconTint="@color/black"
+        app:helperTextTextColor="@color/black"
+        app:endIconMode="clear_text"
+        app:helperText="Obrigatório*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputGeneroLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_Prateleira"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputEstanteLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:hint="@string/estante"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:endIconTint="@color/black"
+        app:helperTextTextColor="@color/black"
+        app:endIconMode="clear_text"
+        app:helperText="Obrigatório*"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputPrateleiraLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_Estante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="155dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/blue_btn"
+        android:textColor="@color/black"
+        android:text="Salvar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEstanteLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

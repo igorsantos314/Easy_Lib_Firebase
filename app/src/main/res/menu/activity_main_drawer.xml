@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/cadastro_cliente"
+            android:icon="@drawable/ic_cadastro_cliente"
+            android:title="@string/cadastro_cliente" />
+        <item
+            android:id="@+id/consulta_cliente"
+            android:icon="@drawable/ic_consulta_cliente"
+            android:iconTint="@color/black"
+            android:title="@string/consultar_cliente" />
+        <item
+            android:id="@+id/cadastro_livro"
+            android:icon="@drawable/ic_cadastro_livro"
+            android:iconTint="@color/black"
+            android:title="@string/cadastro_livro" />
+        <item
+            android:id="@+id/consultar_livro"
+            android:icon="@drawable/ic_consulta_livro"
+            android:iconTint="@color/black"
+            android:title="@string/consultar_livro" />
+        <item
+            android:id="@+id/cadastro_emprestimo"
+            android:icon="@drawable/ic_cadastro_emprestimo"
+            android:iconTint="@color/black"
+            android:title="@string/cadastro_emprestimo" />
+        <item
+            android:id="@+id/consulta_emprestimo"
+            android:icon="@drawable/ic_consulta_emprestimo"
+            android:iconTint="@color/black"
+            android:title="@string/consultar_emprestimo" />
+    </group>
+</menu>

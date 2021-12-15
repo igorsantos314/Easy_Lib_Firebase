@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "933029895302",
+    "project_id": "easylib-2554f",
+    "storage_bucket": "easylib-2554f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933029895302:android:6f7bb0e507b4d7d15e8507",
+        "android_client_info": {
+          "package_name": "com.example.easy_lib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "933029895302-u5m24fctchinlk330l60dlv34f52h3at.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ9JljKnL7nM1W4qGENAWz1kC-OtYByK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "933029895302-u5m24fctchinlk330l60dlv34f52h3at.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.easy_lib.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/consulta_cliente"
+        android:name="com.example.easy_lib.ui.consultarCliente.FragmentConsultarCliente"
+        android:label="@string/menu_cadastro_cliente"
+        tools:layout="@layout/fragment_consultar_cliente" />
+
+    <fragment
+        android:id="@+id/cadastro_livro"
+        android:name="com.example.easy_lib.ui.cadastroLivro.CadastroLivroFragment"
+        android:label="@string/menu_cadastro_livro"
+        tools:layout="@layout/fragment_cadastro_livro" />
+
+    <fragment
+        android:id="@+id/cadastro_cliente"
+        android:name="com.example.easy_lib.ui.cadastroCliente.CadastroClienteFragment"
+        android:label="@string/menu_cadastro_cliente"
+        tools:layout="@layout/fragment_cadastro_cliente" />
+
+    <fragment
+        android:id="@+id/consulta_emprestimo"
+        android:name="com.example.easy_lib.ui.consultarEmprestimo.FragmentConsultarEmprestimo"
+        android:label="@string/consultar_emprestimo"
+        tools:layout="@layout/fragment_consultar_emprestimo" />
+    <fragment
+        android:id="@+id/cadastro_emprestimo"
+        android:name="com.example.easy_lib.ui.cadastroEmprestimo.FragmentCadastoEmprestimo"
+        android:label="@string/cadastro_emprestimo"
+        tools:layout="@layout/fragment_cadastro_emprestimo" />
+    <fragment
+        android:id="@+id/consultar_livro"
+        android:name="com.example.easy_lib.ui.consultarLivro.FragmentConsultarLivro"
+        android:label="@string/consultar_livro"
+        tools:layout="@layout/fragment_consultar_livro" />
+
+</navigation>

@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">Easy_lib</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--Strings do menu -->
+    <string name="menu_home">Home</string>
+    <string name="menu_cadastro_cliente">Cadastrar novo cliente</string>
+    <string name="menu_cadastro_livro">Cadastrar novo livro</string>
+    <string name="menu_emprestimo">Cadastrar novo empréstimo</string>
+    <string name="menu_funcionario">Cadastrar novo funcionário</string>
+
+
+    <string name="cadastro_cliente">Cadastrar cliente</string>
+    <string name="cadastro_livro">Cadastrar livro</string>
+    <string name="cadastro_emprestimo">Cadastrar empréstimo</string>
+    <string name="consultar_cliente">Consultar cliente</string>
+    <string name="consultar_livro">Consultar livro</string>
+    <string name="consultar_emprestimo">Consultar empréstimo</string>
+
+    <!--Strings telas de cadastro -->
+
+    <string name="cliente_cadastrado">CLIENTE JÁ CADASTRADO</string>
+
+    <string name="nome_completo">Nome Completo</string>
+    <string name="telefone">Telefone</string>
+    <string name="data_Nascimento">Data de Nascimento</string>
+    <string name="cpf">CPF</string>
+    <string name="rua">Rua</string>
+    <string name="numero">Número</string>
+    <string name="cidade">Cidade</string>
+    <string name="bairro">Bairro</string>
+
+    <string name="autor">Autor</string>
+    <string name="nome_livro">Nome do Livro</string>
+    <string name="cod_livro">Código do livro</string>
+    <string name="editora">Editora</string>
+    <string name="ano">Ano de lançamento</string>
+    <string name="quant">Quantidade</string>
+    <string name="genero">Gênero</string>
+    <string name="prateleira">Prateleira</string>
+    <string name="estante">Estante</string>
+
+    <string name="cliente">CPF do Cliente</string>
+    <string name="livro">Código do Livro</string>
+    <string name="dataAluguel">Data de Aluguel</string>
+    <string name="dataDevolucao">Data de Devolução</string>
+
+    <string name="btn_exibir_todos_clientes">Exibir todos os Clientes</string>
+    <string name="btn_exibir_todos_livros">Exibir todos os Livros</string>
+    <string name="btn_exibir_emprestimos">Exibir empréstimos</string>
+
+
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
