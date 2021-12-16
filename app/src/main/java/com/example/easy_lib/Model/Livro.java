@@ -2,20 +2,20 @@ package com.example.easy_lib.Model;
 
 public class Livro {
 
-    private int codigo;
+    private String codigo;
     private String prateleira;
-    private int ano;
+    private String ano;
     private String nome;
     private String estante;
     private String autor;
     private String editora;
-    private int quantidade;
+    private String quantidade;
     private String genero;
 
     public Livro() {
     }
 
-    public Livro(int codigo, String prateleira, int ano, String nome, String estante, String autor, String editora, int quantidade, String genero) {
+    public Livro(String codigo, String prateleira, String ano, String nome, String estante, String autor, String editora, String quantidade, String genero) {
         this.codigo = codigo;
         this.prateleira = prateleira;
         this.ano = ano;
@@ -27,11 +27,11 @@ public class Livro {
         this.genero = genero;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -43,11 +43,11 @@ public class Livro {
         this.prateleira = prateleira;
     }
 
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 
@@ -83,11 +83,11 @@ public class Livro {
         this.editora = editora;
     }
 
-    public int getQuantidade() {
+    public String getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(String quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -101,16 +101,6 @@ public class Livro {
 
     @Override
     public String toString() {
-        return "Livro{" +
-                "codigo=" + codigo +
-                ", prateleira='" + prateleira + '\'' +
-                ", ano=" + ano +
-                ", nome='" + nome + '\'' +
-                ", estante='" + estante + '\'' +
-                ", autor='" + autor + '\'' +
-                ", editora='" + editora + '\'' +
-                ", quantidade=" + quantidade +
-                ", genero='" + genero + '\'' +
-                '}';
+        return nome;
     }
 }

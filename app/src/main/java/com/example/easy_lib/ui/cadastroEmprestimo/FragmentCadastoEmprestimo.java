@@ -1,8 +1,13 @@
 package com.example.easy_lib.ui.cadastroEmprestimo;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -16,6 +21,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,9 +33,11 @@ import com.example.easy_lib.Model.Cliente;
 import com.example.easy_lib.Model.ClienteFirebaseDAO;
 import com.example.easy_lib.Model.Emprestimo;
 import com.example.easy_lib.Model.IEmprestimo;
+import com.example.easy_lib.Model.Livro;
 import com.example.easy_lib.R;
 import com.example.easy_lib.View.IEmprestimoView;
 import com.example.easy_lib.databinding.FragmentCadastroEmprestimoBinding;
+import com.example.easy_lib.ui.exibirConsultaLivro.TelaExibirConsultaLivro;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +48,7 @@ import com.vicmikhailau.maskededittext.MaskedEditText;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoView {
 
@@ -47,10 +58,39 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
     TextView txt_nome_cliente, txt_data_emprestimo, txt_data_devolucao;
     MaskedEditText met_cpf;
     TextInputLayout layout_cpf;
+    Button add;
+    ListView ltv_livros_emprestimo;
 
     IOnEmprestimoController emprestimoController;
+    ArrayAdapter<Livro> adapter_livro;
+    ArrayList<Livro> livros_emprestimo = new ArrayList<>();
 
     private View view;
+
+    ActivityResultLauncher activityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode() == 15){
+
+                        //PEGA A INTEÇÃO DE RETORNO
+                        Intent i = result.getData();
+
+                        //PEGA OS DADOS
+                        Livro livro = new Livro();
+                        livro.setCodigo(i.getStringExtra("codigo"));
+                        livro.setNome(i.getStringExtra("nome"));
+
+                        //ADICIONA O LIVRO NA LISTA
+                        adicionarLivro(livro);
+                    }
+                    else{
+                        Toast.makeText(view.getContext(), "NENHUM LIVRO ADICIONADO", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
 
     public static FragmentCadastoEmprestimo newInstance() {
         return new FragmentCadastoEmprestimo();
@@ -73,6 +113,9 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
         txt_nome_cliente = view.findViewById(R.id.txtNomeClienteEmprestimo);
         txt_data_emprestimo = view.findViewById(R.id.txtDataEmprestimo);
         txt_data_devolucao = view.findViewById(R.id.txtDataDevolucao);
+        ltv_livros_emprestimo = view.findViewById(R.id.ltvLivrosEmprestimo);
+
+        add = view.findViewById(R.id.btnAddLivro);
 
         //CHAMADAS
         setDatas();
@@ -108,6 +151,23 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
             }
         });
 
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //INTENÇÃO
+                Intent intent = new Intent(view.getContext(), TelaExibirConsultaLivro.class);
+
+                //CHAMA O INTENT ESPERANDO O RESULTADO
+                activityResultLauncher.launch(
+                        intent
+                );
+            }
+        });
+
+        //SETA O ADAPTER NO LISTVIEW
+        adapter_livro = new ArrayAdapter<Livro>(getContext(), android.R.layout.simple_list_item_1, livros_emprestimo);
+        ltv_livros_emprestimo.setAdapter(adapter_livro);
+
         return view;
     }
 
@@ -124,6 +184,15 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
         //SETAR DATA NOS TEXTVIEW
         txt_data_emprestimo.setText(data);
         txt_data_devolucao.setText(devolucao);
+    }
+
+    public void adicionarLivro(Livro livro){
+        //MENSAGEM
+        Toast.makeText(view.getContext(), "LIVRO ADICIONADO" + livro, Toast.LENGTH_SHORT).show();
+
+        //ADICIONA O ARRAYLIST NO ADAPTER
+        livros_emprestimo.add(livro);
+        ltv_livros_emprestimo.setAdapter(adapter_livro);
     }
 
     public void setTextBuscando(TextView textView){

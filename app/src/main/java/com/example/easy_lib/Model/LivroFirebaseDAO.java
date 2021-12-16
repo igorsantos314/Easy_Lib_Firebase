@@ -47,12 +47,21 @@ public class LivroFirebaseDAO implements ILivroFirebaseDAO{
 
     @Override
     public Query getLivro(String codigo) {
-        return null;
+        return databaseReference.child(father).orderByChild("codigo").equalTo(codigo);
     }
 
     @Override
-    public Query getLivroPorNome(String codigo) {
-        return null;
+    public Query getLivroPorNome(String nome) {
+        Query query;
+
+        if(nome.equals("")){
+            query = databaseReference.child(father);
+        }
+        else{
+            query = databaseReference.child(father).orderByChild("nome").startAt(nome).endAt(nome + "\uf8ff");
+        }
+
+        return query;
     }
 
     @Override

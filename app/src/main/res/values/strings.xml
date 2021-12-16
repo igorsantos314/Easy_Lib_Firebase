@@ -37,7 +37,7 @@
     <string name="bairro">Bairro</string>
 
     <string name="autor">Autor</string>
-    <string name="nome_livro">Nome do Livro</string>
+    <string name="nome_livro">Titulo do Livro</string>
     <string name="cod_livro">Código do livro</string>
     <string name="editora">Editora</string>
     <string name="ano">Ano de lançamento</string>
@@ -54,7 +54,6 @@
     <string name="btn_exibir_todos_clientes">Exibir todos os Clientes</string>
     <string name="btn_exibir_todos_livros">Exibir todos os Livros</string>
     <string name="btn_exibir_emprestimos">Exibir empréstimos</string>
-
 
 
     <!-- Strings related to login -->

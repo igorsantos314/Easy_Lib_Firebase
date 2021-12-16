@@ -89,8 +89,6 @@ public class OnClienteController implements IOnClienteController{
 
     @Override
     public void onExistCliente(String cpf) {
-        ClienteFirebaseDAO clienteFirebaseDAO = new ClienteFirebaseDAO();
-
         Query query = clienteFirebaseDAO.getCliente(cpf);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -57,7 +57,6 @@ public class ClienteFirebaseDAO implements IClienteFirebaseDAO{
 
     @Override
     public Query getCliente(String cpf) {
-
         //RETORNA A QUERY COM O CLIENTE
         return databaseReference.child(father).orderByChild("cpf").equalTo(cpf);
     }

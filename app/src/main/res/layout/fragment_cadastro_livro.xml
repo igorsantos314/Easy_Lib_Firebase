@@ -29,6 +29,9 @@
         android:layout_marginEnd="32dp"
         android:hint="@string/cod_livro"
         android:textColorHint="@color/black"
+        app:counterEnabled="true"
+        app:counterMaxLength="5"
+        app:errorEnabled="true"
         app:boxStrokeColor="@color/black"
         app:endIconTint="@color/black"
         app:helperTextTextColor="@color/black"
@@ -43,7 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:inputType="number" />
+            android:inputType="number"
+            android:maxLength="5"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,6 +61,7 @@
         android:layout_marginEnd="32dp"
         android:hint="@string/nome_livro"
         android:textColorHint="@color/black"
+
         app:boxStrokeColor="@color/black"
         app:endIconTint="@color/black"
         app:helperTextTextColor="@color/black"

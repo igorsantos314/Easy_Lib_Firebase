@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Easy_lib">
         <activity
+            android:name=".ui.exibirConsultaLivro.TelaExibirConsultaLivro"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

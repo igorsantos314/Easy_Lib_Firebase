@@ -2,6 +2,7 @@ package com.example.easy_lib.Controller;
 
 import androidx.annotation.NonNull;
 
+import com.example.easy_lib.Model.Cliente;
 import com.example.easy_lib.Model.ClienteFirebaseDAO;
 import com.example.easy_lib.Model.Livro;
 import com.example.easy_lib.Model.LivroFirebaseDAO;
@@ -9,6 +10,12 @@ import com.example.easy_lib.View.IClienteView;
 import com.example.easy_lib.View.ILivroView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class OnLivroController implements IOnLivroController{
 
@@ -21,7 +28,7 @@ public class OnLivroController implements IOnLivroController{
     }
 
     @Override
-    public void insertLivro(int codigo, String prateleira, int ano, String nome, String estante, String autor, String editora, int quantidade, String genero) {
+    public void insertLivro(String codigo, String prateleira, String ano, String nome, String estante, String autor, String editora, String quantidade, String genero) {
         //INSTANCIA DO LIVRO
         Livro livro = new Livro(codigo, prateleira, ano, nome.toUpperCase(), estante, autor, editora, quantidade, genero);
 
@@ -47,12 +54,12 @@ public class OnLivroController implements IOnLivroController{
     }
 
     @Override
-    public void updateLivro(int codigo, String prateleira, int ano, String nome, String estante, String autor, String editora, int quantidade, String genero) {
+    public void updateLivro(String codigo, String prateleira, String ano, String nome, String estante, String autor, String editora, String quantidade, String genero) {
 
     }
 
     @Override
-    public void deleteLivro(int codigo) {
+    public void deleteLivro(String codigo) {
 
     }
 
@@ -62,17 +69,78 @@ public class OnLivroController implements IOnLivroController{
     }
 
     @Override
+    public void onExistLivro(String codigo) {
+        Query query = livroFirebaseDAO.getLivro(codigo);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                //INSTANCIA DO LIVRO
+                Livro livro = null;
+
+                for(DataSnapshot obj: snapshot.getChildren()){
+                    livro = obj.getValue(Livro.class);
+                    break;
+                }
+
+                //VERIFICA SE O LIVRO EXISTE
+                if(livro != null){
+                    //EXIBE ERROR DE LIVRO EXISTE NA VIEW
+                    view.errorLivroExist();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
     public void onExibirTodosLivros() {
 
     }
 
     @Override
-    public void onExibirLivro(int codigo) {
+    public void onExibirLivro(String codigo) {
 
     }
 
     @Override
     public void onExibirLivrosPorNome(String nome) {
+
+        Query query = livroFirebaseDAO.getLivroPorNome("" + nome);
+
+        query.addValueEventListener(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ArrayList<Livro> livros = new ArrayList<>();
+
+                for(DataSnapshot obj: dataSnapshot.getChildren()){
+
+                    //CRIA UMA INSTANCIA DE PERSON COM OS DADOS
+                    Livro livro = obj.getValue(Livro.class);
+
+                    //SETA UID DO OBJETO
+                    //livro.setUid(obj.getKey());
+
+                    //ADICIONA AS PERSONS NA LISTA
+                    livros.add(livro);
+                }
+
+                //POVOA A LISTA DE LIVROS
+                view.exibirLivros(livros);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
