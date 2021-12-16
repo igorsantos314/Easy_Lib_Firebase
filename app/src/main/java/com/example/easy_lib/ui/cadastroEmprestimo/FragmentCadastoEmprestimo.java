@@ -7,6 +7,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +24,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -55,7 +59,7 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
     private FragmentCadastoEmprestimoViewModel mViewModel;
     private FragmentCadastroEmprestimoBinding binding;
 
-    TextView txt_nome_cliente, txt_data_emprestimo, txt_data_devolucao;
+    TextView txt_nome_cliente, txt_data_emprestimo, txt_data_devolucao, txt_contador;
     MaskedEditText met_cpf;
     TextInputLayout layout_cpf;
     Button add;
@@ -115,6 +119,7 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
         txt_data_devolucao = view.findViewById(R.id.txtDataDevolucao);
         ltv_livros_emprestimo = view.findViewById(R.id.ltvLivrosEmprestimo);
 
+        txt_contador = view.findViewById(R.id.txtContator);
         add = view.findViewById(R.id.btnAddLivro);
 
         //CHAMADAS
@@ -164,9 +169,20 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
             }
         });
 
+        ltv_livros_emprestimo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //REMOVER ITEM
+                removerItem(position);
+            }
+        });
+
         //SETA O ADAPTER NO LISTVIEW
         adapter_livro = new ArrayAdapter<Livro>(getContext(), android.R.layout.simple_list_item_1, livros_emprestimo);
         ltv_livros_emprestimo.setAdapter(adapter_livro);
+
+        //EXIBE A QUANTIDADE DE LIVROS
+        atualizarQuantidadeLivros();
 
         return view;
     }
@@ -187,16 +203,84 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
     }
 
     public void adicionarLivro(Livro livro){
-        //MENSAGEM
-        Toast.makeText(view.getContext(), "LIVRO ADICIONADO" + livro, Toast.LENGTH_SHORT).show();
 
-        //ADICIONA O ARRAYLIST NO ADAPTER
-        livros_emprestimo.add(livro);
-        ltv_livros_emprestimo.setAdapter(adapter_livro);
+        if (!livros_emprestimo.contains(livro)) {
+            //MENSAGEM
+            showMensagem("LIVRO ADICIONADO COM SUCESSO");
+
+            //ADICIONA O ARRAYLIST NO ADAPTER
+            livros_emprestimo.add(livro);
+
+            //VERIFICA QUANTIDADE
+            verificaQuantidade();
+
+        } else {
+            //MENSAGEM
+            showMensagem("LIVRO JÁ ADICIONADO");
+        }
+
+    }
+
+    public void verificaQuantidade(){
+        if(livros_emprestimo.size() < 3){
+            //HABILITA O BOTAO
+            add.setEnabled(true);
+        }
+        else{
+            //DESABILITA O BOTAO
+            add.setEnabled(false);
+        }
+
+        //EXIBE A QUANTIDADE DE LIVROS
+        atualizarQuantidadeLivros();
+    }
+
+    public void removerItem(int position){
+        //CRIAR O DIALOGO DE PERGUNTA
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setTitle("REMOVER");
+        builder.setMessage("Retirar " + livros_emprestimo.get(position) + " do Empréstimo?");
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+
+                //REMOVER O ITEM
+                livros_emprestimo.remove(position);
+
+                //ATUALIZA O ADAPTER
+                ltv_livros_emprestimo.setAdapter(adapter_livro);
+
+                //VERIFICAR OS CAMPOS
+                verificaQuantidade();
+            }
+        });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public void setTextBuscando(TextView textView){
         textView.setText("Buscando ....");
+    }
+
+    public void atualizarQuantidadeLivros(){
+
+        //ATUALIZA A QUANTIDADE DE LIVROS
+        txt_contador.setText(
+                livros_emprestimo.size() + "/3 Livros"
+        );
     }
 
     @Override

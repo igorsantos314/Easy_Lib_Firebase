@@ -1,5 +1,7 @@
 package com.example.easy_lib.Model;
 
+import java.util.Objects;
+
 public class Livro {
 
     private String codigo;
@@ -102,5 +104,18 @@ public class Livro {
     @Override
     public String toString() {
         return nome;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Livro livro = (Livro) o;
+        return Objects.equals(codigo, livro.codigo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo);
     }
 }
