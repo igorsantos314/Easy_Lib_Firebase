@@ -2,10 +2,13 @@ package com.example.easy_lib.Controller;
 
 import com.example.easy_lib.Model.Cliente;
 import com.example.easy_lib.Model.Emprestimo;
+import com.example.easy_lib.Model.Livro;
+
+import java.util.ArrayList;
 
 public interface IOnEmprestimoController {
-    void insertEmprestimo (String nome, String cpf, String data_nascimento, String telefone, String rua, String numero, String bairro, String cidade);
-    void updateEmprestimo (String nome, String cpf, String data_nascimento, String telefone, String rua, String numero, String bairro, String cidade);
+    void insertEmprestimo (String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<Livro> livros_emprestimo);
+    void updateEmprestimo (String uid, String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<Livro> livros_emprestimo);
     void deleteEmprestimo (String uid);
 
     void onExibirTodosEmprestimos();

@@ -32,7 +32,6 @@ public class ClienteFirebaseDAO implements IClienteFirebaseDAO{
 
     @Override
     public Task<Void> insertCliente(Cliente cliente) {
-        //.d("ENTROU", "insertCliente: " + cliente);
         //CPF PARA PAI DO NÓ SEM PONTOS E TRAÇOS
         String cpf_formated = cliente.getCpf().replace(".", "").replace("-", "");
 
@@ -71,27 +70,9 @@ public class ClienteFirebaseDAO implements IClienteFirebaseDAO{
         return null;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public boolean existCliente(String cpf){
 
-        boolean[] exist_cliete = {false};
-
-        CompletableFuture.runAsync(() -> {
-            // method call or code to be asynch.
-            readData(new FirebaseCallBack() {
-                @Override
-                public void onCallback(boolean result) {
-                    Log.d("EXIST_CLIENTE", "onCallback: " + result);
-                    exist_cliete[0] = result;
-                }
-            }, cpf);
-        });
-
-        return exist_cliete[0];
-    }
-
-    private void readData(FirebaseCallBack firebaseCallBack, String cpf){
         //RETORNA A QUERY COM O CLIENTE
         Query query = databaseReference.child(father).orderByChild("cpf").equalTo(cpf);
 
@@ -99,19 +80,9 @@ public class ClienteFirebaseDAO implements IClienteFirebaseDAO{
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                boolean result = false;
-
                 for(DataSnapshot obj: snapshot.getChildren()){
                     Cliente cliente = obj.getValue(Cliente.class);
-
-                    //Log.d("EXIST_CLIENTE", "onDataChange: " + cliente);
-                    //break;
-                    result = true;
                 }
-
-                firebaseCallBack.onCallback(result);
-                //Log.d("EXIST_CLIENTE", "onDataChange: " + exist[0] + exist[1]);
             }
 
             @Override
@@ -119,9 +90,7 @@ public class ClienteFirebaseDAO implements IClienteFirebaseDAO{
 
             }
         });
-    }
 
-    private interface FirebaseCallBack{
-        void onCallback(boolean result);
+        return false;
     }
 }

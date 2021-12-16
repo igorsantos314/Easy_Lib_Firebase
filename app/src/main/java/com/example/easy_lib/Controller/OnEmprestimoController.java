@@ -8,12 +8,17 @@ import com.example.easy_lib.Model.Cliente;
 import com.example.easy_lib.Model.ClienteFirebaseDAO;
 import com.example.easy_lib.Model.Emprestimo;
 import com.example.easy_lib.Model.EmprestimoFirebaseDAO;
+import com.example.easy_lib.Model.Livro;
 import com.example.easy_lib.View.IClienteView;
 import com.example.easy_lib.View.IEmprestimoView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class OnEmprestimoController implements IOnEmprestimoController{
 
@@ -26,12 +31,26 @@ public class OnEmprestimoController implements IOnEmprestimoController{
     }
 
     @Override
-    public void insertEmprestimo(String nome, String cpf, String data_nascimento, String telefone, String rua, String numero, String bairro, String cidade) {
-
+    public void insertEmprestimo(String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<Livro> livros_emprestimo) {
+        emprestimoFirebaseDAO.insertEmprestimo(
+                new Emprestimo(dataEmprestimo, dataDevolucao, status, cpfCliente, nomeCliente, livros_emprestimo)
+        ).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                //MENSAGEM DE SUCESSO
+                view.showMensagem("EMPRESTIMO FINALIZADO");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //MENSAGEM DE ERROR
+                view.showMensagem("ERROR AO FINALIZAR EMPRESTIMO");
+            }
+        });
     }
 
     @Override
-    public void updateEmprestimo(String nome, String cpf, String data_nascimento, String telefone, String rua, String numero, String bairro, String cidade) {
+    public void updateEmprestimo(String uid, String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<Livro> livros_emprestimo) {
 
     }
 

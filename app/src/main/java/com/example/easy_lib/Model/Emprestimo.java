@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Emprestimo implements IEmprestimo {
@@ -19,20 +20,18 @@ public class Emprestimo implements IEmprestimo {
     private String cpfCliente;
     private String nomeCliente;
 
-    private String codLivro;
-    private String nomeLivro;
+    private ArrayList<Livro> livros_emprestimo;
 
     public Emprestimo() {
     }
 
-    public Emprestimo(String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, String codLivro, String nomeLivro) {
+    public Emprestimo(String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<Livro> livros_emprestimo) {
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.status = status;
         this.cpfCliente = cpfCliente;
         this.nomeCliente = nomeCliente;
-        this.codLivro = codLivro;
-        this.nomeLivro = nomeLivro;
+        this.livros_emprestimo = livros_emprestimo;
     }
 
     public String getUid() {
@@ -83,20 +82,12 @@ public class Emprestimo implements IEmprestimo {
         this.nomeCliente = nomeCliente;
     }
 
-    public String getCodLivro() {
-        return codLivro;
+    public ArrayList<Livro> getLivros_emprestimo() {
+        return livros_emprestimo;
     }
 
-    public void setCodLivro(String codLivro) {
-        this.codLivro = codLivro;
-    }
-
-    public String getNomeLivro() {
-        return nomeLivro;
-    }
-
-    public void setNomeLivro(String nomeLivro) {
-        this.nomeLivro = nomeLivro;
+    public void setLivros_emprestimo(ArrayList<Livro> livros_emprestimo) {
+        this.livros_emprestimo = livros_emprestimo;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

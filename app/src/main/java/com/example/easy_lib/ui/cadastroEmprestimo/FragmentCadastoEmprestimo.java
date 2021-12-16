@@ -62,7 +62,7 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
     TextView txt_nome_cliente, txt_data_emprestimo, txt_data_devolucao, txt_contador;
     MaskedEditText met_cpf;
     TextInputLayout layout_cpf;
-    Button add;
+    Button add, finalizar;
     ListView ltv_livros_emprestimo;
 
     IOnEmprestimoController emprestimoController;
@@ -121,6 +121,7 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
 
         txt_contador = view.findViewById(R.id.txtContator);
         add = view.findViewById(R.id.btnAddLivro);
+        finalizar = view.findViewById(R.id.btnFinalizar);
 
         //CHAMADAS
         setDatas();
@@ -174,6 +175,20 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //REMOVER ITEM
                 removerItem(position);
+            }
+        });
+
+        finalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emprestimoController.insertEmprestimo(
+                        txt_data_emprestimo.getText().toString(),
+                        txt_data_devolucao.getText().toString(),
+                        "PENDENTE",
+                        met_cpf.getText().toString(),
+                        txt_nome_cliente.getText().toString(),
+                        livros_emprestimo
+                );
             }
         });
 
