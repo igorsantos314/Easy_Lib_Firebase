@@ -20,12 +20,12 @@ public class Emprestimo implements IEmprestimo {
     private String cpfCliente;
     private String nomeCliente;
 
-    private ArrayList<Livro> livros_emprestimo;
+    private ArrayList<ItemEmprestimo> livros_emprestimo;
 
     public Emprestimo() {
     }
 
-    public Emprestimo(String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<Livro> livros_emprestimo) {
+    public Emprestimo(String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<ItemEmprestimo> livros_emprestimo) {
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.status = status;
@@ -82,11 +82,11 @@ public class Emprestimo implements IEmprestimo {
         this.nomeCliente = nomeCliente;
     }
 
-    public ArrayList<Livro> getLivros_emprestimo() {
+    public ArrayList<ItemEmprestimo> getLivros_emprestimo() {
         return livros_emprestimo;
     }
 
-    public void setLivros_emprestimo(ArrayList<Livro> livros_emprestimo) {
+    public void setLivros_emprestimo(ArrayList<ItemEmprestimo> livros_emprestimo) {
         this.livros_emprestimo = livros_emprestimo;
     }
 

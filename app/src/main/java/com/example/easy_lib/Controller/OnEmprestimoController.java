@@ -8,6 +8,7 @@ import com.example.easy_lib.Model.Cliente;
 import com.example.easy_lib.Model.ClienteFirebaseDAO;
 import com.example.easy_lib.Model.Emprestimo;
 import com.example.easy_lib.Model.EmprestimoFirebaseDAO;
+import com.example.easy_lib.Model.ItemEmprestimo;
 import com.example.easy_lib.Model.Livro;
 import com.example.easy_lib.View.IClienteView;
 import com.example.easy_lib.View.IEmprestimoView;
@@ -31,9 +32,10 @@ public class OnEmprestimoController implements IOnEmprestimoController{
     }
 
     @Override
-    public void insertEmprestimo(String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<Livro> livros_emprestimo) {
+    public void insertEmprestimo(String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<ItemEmprestimo> itens_emprestimo) {
+
         emprestimoFirebaseDAO.insertEmprestimo(
-                new Emprestimo(dataEmprestimo, dataDevolucao, status, cpfCliente, nomeCliente, livros_emprestimo)
+                new Emprestimo(dataEmprestimo, dataDevolucao, status, cpfCliente, nomeCliente, itens_emprestimo)
         ).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
@@ -50,7 +52,7 @@ public class OnEmprestimoController implements IOnEmprestimoController{
     }
 
     @Override
-    public void updateEmprestimo(String uid, String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<Livro> livros_emprestimo) {
+    public void updateEmprestimo(String uid, String dataEmprestimo, String dataDevolucao, String status, String cpfCliente, String nomeCliente, ArrayList<ItemEmprestimo> itens_emprestimo) {
 
     }
 
@@ -83,8 +85,6 @@ public class OnEmprestimoController implements IOnEmprestimoController{
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                Log.d("EXIST_CLIENTE", "onDataChange: " + snapshot.getChildren());
 
                 //INSTANCIA DO CLIENTE
                 Cliente cliente = null;

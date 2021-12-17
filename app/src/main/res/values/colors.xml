@@ -15,5 +15,6 @@
     <color name="blue_items">#84DCC6</color>
     <color name="vine_btn">#B12341</color>
     <color name="menu_general">#FDCE84</color>
-
+    <color name="red">#FF0000</color>
+    <color name="disable">#C0C0C0</color>
 </resources>

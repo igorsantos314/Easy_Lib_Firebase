@@ -19,12 +19,10 @@ import com.example.easy_lib.Controller.OnLivroController;
 import com.example.easy_lib.Model.Livro;
 import com.example.easy_lib.R;
 import com.example.easy_lib.View.ILivroView;
-import com.example.easy_lib.databinding.FragmentCadastroClienteBinding;
 import com.example.easy_lib.databinding.FragmentCadastroLivroBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.Query;
-import com.vicmikhailau.maskededittext.MaskedEditText;
 
 import java.util.ArrayList;
 
@@ -56,7 +54,7 @@ public class CadastroLivroFragment extends Fragment implements ILivroView {
 
         livroController = new OnLivroController(this);
 
-        txt_codigo = view.findViewById(R.id.txt_CodLivro);
+        txt_codigo = view.findViewById(R.id.etQuantidadeLivro);
         layout_codigo_livro = view.findViewById(R.id.textInputCodLivroLayout);
 
         txt_nome = view.findViewById(R.id.txt_NomeLivro);

@@ -193,7 +193,7 @@
                 <ListView
                     android:id="@+id/ltvLivrosEmprestimo"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="350dp"
                     android:layout_marginTop="0dp" />
 
                 <TextView

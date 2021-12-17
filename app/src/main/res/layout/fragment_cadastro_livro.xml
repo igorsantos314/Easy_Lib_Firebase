@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txt_CodLivro"
+            android:id="@+id/etQuantidadeLivro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
