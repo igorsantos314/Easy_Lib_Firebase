@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ILivroView {
+    void adicionarLivro(Livro livro);
     void exibirLivros(ArrayList<Livro> livros);
     void exibirLivro(Query query);
 

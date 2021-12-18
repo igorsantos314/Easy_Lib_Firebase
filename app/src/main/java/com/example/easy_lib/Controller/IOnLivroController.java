@@ -15,5 +15,7 @@ public interface IOnLivroController {
     void onExibirLivrosPorNome (String nome);
     void onExibirQuantidadeLivros();
 
+    void onExibirLivroConsulta(String codigo);
+
     boolean onValidarCampos(Livro livro);
 }

@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,11 +76,12 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
+                    //PEGA A INTEÇÃO DE RETORNO
+                    Intent i = result.getData();
+
+                    //Log.d(TAG, "onActivityResult: " + result.getResultCode());
+
                     if(result.getResultCode() == 15){
-
-                        //PEGA A INTEÇÃO DE RETORNO
-                        Intent i = result.getData();
-
                         //PEGA OS DADOS
                         ItemEmprestimo item = new ItemEmprestimo(
                                 i.getStringExtra("codigo"),
@@ -89,6 +91,17 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
 
                         //ADICIONA O LIVRO NA LISTA
                         adicionarLivro(item);
+                    }
+                    else if(result.getResultCode() == 30){
+                        //ATUALIZA A QUANTIDADE DO LIVRO
+                        atualizarQuantidade(
+                                "update",
+                                new ItemEmprestimo(
+                                        i.getStringExtra("codigo"),
+                                        i.getStringExtra("nome"),
+                                        Integer.parseInt(i.getStringExtra("quantidade"))
+                                )
+                        );
                     }
                     else{
                         Toast.makeText(view.getContext(), "NENHUM LIVRO ADICIONADO", Toast.LENGTH_SHORT).show();
@@ -161,13 +174,7 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //INTENÇÃO
-                Intent intent = new Intent(view.getContext(), TelaExibirConsultaLivro.class);
-
-                //CHAMA O INTENT ESPERANDO O RESULTADO
-                activityResultLauncher.launch(
-                        intent
-                );
+                abrirProcuraLivro("");
             }
         });
 
@@ -218,6 +225,35 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
         txt_data_devolucao.setText(devolucao);
     }
 
+    public void abrirProcuraLivro(String codigo){
+        //INTENÇÃO
+        Intent intent = new Intent(view.getContext(), TelaExibirConsultaLivro.class);
+        intent.putExtra("codigo", codigo);
+
+        //CHAMA O INTENT ESPERANDO O RESULTADO
+        activityResultLauncher.launch(
+                intent
+        );
+    }
+
+    public void atualizarQuantidade(String tipo, ItemEmprestimo item){
+        //ATUALIZAR A QUANTIDADE DO LIVRO JÁ ADICIONADO
+        for (int position=0; position < itens_emprestimo.size(); position++) {
+            if (itens_emprestimo.get(position).equals(item)) {
+                if(tipo.equals("add")) {
+                    itens_emprestimo.get(position).updateQuantidade(item.getQuantidade());
+                }
+                else{
+                    itens_emprestimo.get(position).setQuantidade(item.getQuantidade());
+                }
+                break;
+            }
+        }
+
+        //ATUALIZA O ADAPTER
+        ltv_livros_emprestimo.setAdapter(adapter_itens_emprestimo);
+    }
+
     public void adicionarLivro(ItemEmprestimo item){
 
         if (!itens_emprestimo.contains(item)) {
@@ -229,16 +265,8 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
 
         } else {
 
-            //ATUALIZAR A QUANTIDADE DO LIVRO JÁ ADICIONADO
-            for (int position=0; position < itens_emprestimo.size(); position++) {
-                if (itens_emprestimo.get(position).equals(item)) {
-                    itens_emprestimo.get(position).updateQuantidade(item.getQuantidade());
-                    break;
-                }
-            }
-
-            //ATUALIZA O ADAPTER
-            ltv_livros_emprestimo.setAdapter(adapter_itens_emprestimo);
+            //ATUALIZA A QUANTIDADE DO LIVRO
+            atualizarQuantidade("add", item);
 
             //MENSAGEM
             Toast.makeText(getContext(), "Quantidade Atualizada", Toast.LENGTH_SHORT).show();
@@ -395,7 +423,11 @@ public class FragmentCadastoEmprestimo extends Fragment implements IEmprestimoVi
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //FECHAR DIALOGO
+                dialog.dismiss();
 
+                //ABRE A TELA PARA SELECIONAR NOVA QUANTIDADE
+                abrirProcuraLivro(itemEmprestimo.getCodigo_livro());
             }
         });
 

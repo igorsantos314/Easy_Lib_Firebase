@@ -51,5 +51,6 @@ dependencies {
 
     implementation 'io.github.vicmikhailau:MaskedEditText:4.0.7'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.+"
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
 
 }

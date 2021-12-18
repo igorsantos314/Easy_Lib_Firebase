@@ -9,24 +9,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.exibirConsultaLivro.TelaExibirConsultaLivro">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputClienteLayout"
-        style="@style/OutlinedBoxStyle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nome_livro"
-        android:minWidth="200dp"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txt_NomeLivro"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputClienteLayout"
+            style="@style/OutlinedBoxStyle"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="Buscar por Título"
+            android:minWidth="200dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txt_NomeLivro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_buscar"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/blue_btn"
+            android:text="Buscar"/>
+
+        <Button
+            android:id="@+id/btn_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:rotation="-90"
+            android:background="@drawable/ic_scanner"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,6 +74,8 @@
         android:backgroundTint="@color/blue_btn"
         android:text="CANCELAR"
         />
+
+
 
 </LinearLayout>
 

@@ -105,7 +105,32 @@ public class OnLivroController implements IOnLivroController{
 
     @Override
     public void onExibirLivro(String codigo) {
+        Query query = livroFirebaseDAO.getLivro(codigo);
 
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                //INSTANCIA DO LIVRO
+                Livro livro = null;
+
+                for(DataSnapshot obj: snapshot.getChildren()){
+                    livro = obj.getValue(Livro.class);
+                    break;
+                }
+
+                //VERIFICA SE O LIVRO EXISTE
+                if(livro != null){
+                    //EXIBE ERROR DE LIVRO EXISTE NA VIEW
+                    view.errorLivroExist();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -150,7 +175,44 @@ public class OnLivroController implements IOnLivroController{
     }
 
     @Override
+    public void onExibirLivroConsulta(String codigo) {
+        Query query = livroFirebaseDAO.getLivro(codigo);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                //INSTANCIA DO LIVRO
+                Livro livro = null;
+
+                for(DataSnapshot obj: snapshot.getChildren()){
+                    livro = obj.getValue(Livro.class);
+                    break;
+                }
+
+                //VERIFICA SE O LIVRO EXISTE
+                if(livro != null){
+                    //ABRE A TELA DE ESCOLHER A QUANTIDADE DO LIVRO
+                    view.adicionarLivro(livro);
+                }
+                else{
+                    //EXIBE ERROR DE LIVRO NÃO EXISTE NA VIEW
+                    view.errorLivroExist();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    @Override
     public boolean onValidarCampos(Livro livro) {
         return false;
     }
+
+
+
 }

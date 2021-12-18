@@ -93,7 +93,7 @@ public class CadastroLivroFragment extends Fragment implements ILivroView {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() == 5){
+                if(s.length() == 13){
                     //VERIFICA SE O LIVRO EXISTE
                     livroController.onExistLivro("" + s);
                 }
@@ -110,6 +110,11 @@ public class CadastroLivroFragment extends Fragment implements ILivroView {
         });
 
         return view;
+    }
+
+    @Override
+    public void adicionarLivro(Livro livro) {
+
     }
 
     @Override
